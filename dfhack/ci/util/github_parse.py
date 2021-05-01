@@ -1,0 +1,2 @@
+class PullRequestRef:
+    pass
