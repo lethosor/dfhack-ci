@@ -60,6 +60,15 @@ class PullRequestRef:
         return cls(**kwargs)
 
     @classmethod
+    def from_string(cls, string):
+        for parser in (cls.from_url, cls.from_api_url, cls.from_text_ref):
+            try:
+                return parser(string)
+            except ValueError:
+                pass
+        raise ValueError('Unrecognized PR reference: %r' % string)
+
+    @classmethod
     def all_from_description(cls, desc, default_repo_owner=None, default_repo_name=None, ignore_errors=False):
         @contextlib.contextmanager
         def error_wrapper():

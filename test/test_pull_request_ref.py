@@ -52,6 +52,22 @@ def test_from_text_ref_missing_owner():
         PullRequestRef.from_text_ref('#123', default_repo_name='x')
     assert 'missing repo owner' in str(excinfo.value).lower()
 
+def test_from_string():
+    refs = [
+        PullRequestRef.from_string('https://github.com/DFHack/dfhack/pull/43'),
+        PullRequestRef.from_string('https://api.github.com/repos/DFHack/dfhack/pulls/43'),
+        PullRequestRef.from_string('DFHack/dfhack#43'),
+    ]
+    for ref in refs:
+        assert ref == refs[0]
+
+def test_from_string_invalid():
+    with pytest.raises(ValueError):
+        PullRequestRef.from_string('foo')
+
+    with pytest.raises(ValueError):
+        PullRequestRef.from_string('foo#4')
+
 def test_from_description():
     desc = """
     This is a test PR
