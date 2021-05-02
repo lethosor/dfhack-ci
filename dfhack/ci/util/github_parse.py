@@ -86,3 +86,15 @@ class PullRequestRef:
         # sort matches by their index, then return just the PullRequestRef
         matches.sort(key=lambda pair: pair[0])
         return [m[1] for m in matches]
+
+    def _format(self, format_spec):
+        return format_spec.format(**{k: getattr(self, k) for k in dir(self)})
+
+    def as_url(self):
+        return self._format('https://github.com/{repo_owner}/{repo_name}/pull/{pr_number}')
+
+    def as_api_url(self):
+        return self._format('https://api.github.com/repos/{repo_owner}/{repo_name}/pulls/{pr_number}')
+
+    def as_text_ref(self):
+        return self._format('{repo_owner}/{repo_name}#{pr_number}')

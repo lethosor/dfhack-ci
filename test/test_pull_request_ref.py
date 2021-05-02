@@ -84,3 +84,15 @@ def test_from_description_errors():
     with pytest.raises(ValueError) as excinfo:
         refs = PullRequestRef.all_from_description(desc)
     assert 'missing repo name' in str(excinfo.value).lower()
+
+def test_format_consistency():
+    assert PullRequestRef.from_url(SAMPLE_WEB_URL).as_url() == SAMPLE_WEB_URL
+    assert PullRequestRef.from_api_url(SAMPLE_API_URL).as_api_url() == SAMPLE_API_URL
+    sample_text_ref = 'a/b#2'
+    assert PullRequestRef.from_text_ref(sample_text_ref).as_text_ref() == sample_text_ref
+
+def test_format_conversion():
+    ref = PullRequestRef.from_text_ref('#7', default_repo_owner='owner', default_repo_name='name')
+    assert ref.as_url() == 'https://github.com/owner/name/pull/7'
+    assert ref.as_api_url() == 'https://api.github.com/repos/owner/name/pulls/7'
+    assert ref.as_text_ref() == 'owner/name#7'
