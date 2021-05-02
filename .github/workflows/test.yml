@@ -1,0 +1,21 @@
+name: Test
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3
+      - name: Install dependencies
+        run: |
+          pip install pytest
+      - name: Clone dfhack-ci
+        uses: actions/checkout@v2
+      - name: Install dfhack-ci
+        run: |
+          pip install .
+      - name: Run tests
+        run: |
+          pytest -v
