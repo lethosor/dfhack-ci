@@ -1,0 +1,34 @@
+[submodule "plugins/stonesense"]
+	path = plugins/stonesense
+	url = ../../DFHack/stonesense.git
+[submodule "plugins/isoworld"]
+	path = plugins/isoworld
+	url = ../../DFHack/isoworld.git
+[submodule "library/xml"]
+	path = library/xml
+	url = ../../DFHack/df-structures.git
+[submodule "depends/clsocket"]
+	path = depends/clsocket
+	url = ../../DFHack/clsocket.git
+[submodule "scripts2"]
+	path = scripts
+	url = ../../DFHack/scripts.git
+[submodule "depends/jsoncpp"]
+	path = depends/jsoncpp-sub
+	url = ../../DFHack/jsoncpp.git
+[submodule "depends/xlsxio"]
+	path = depends/xlsxio
+	url = ../../DFHack/xlsxio.git
+	shallow = true
+[submodule "depends/libzip"]
+	path = depends/libzip
+	url = ../../DFHack/libzip.git
+	shallow = true
+[submodule "depends/libexpat"]
+	path = depends/libexpat
+	url = ../../DFHack/libexpat.git
+	shallow = true
+[submodule "depends/luacov"]
+	path = depends/luacov
+	url = ../../DFHack/luacov.git
+	shallow = true
